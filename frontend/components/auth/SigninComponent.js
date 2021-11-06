@@ -5,8 +5,8 @@ import Router from 'next/router';
 
 const SigninComponent = () => {
   const [values, setValues] = useState({
-    email: 'ryan@gmail.com',
-    password: 'rrrrrr',
+    email: 'telmo@email.com',
+    password: '123456',
     error: '',
     loading: false,
     message: '',
@@ -55,11 +55,23 @@ const SigninComponent = () => {
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <input value={email} onChange={handleChange('email')} type="email" className="form-control" placeholder="Type your email" />
+          <input
+            value={email}
+            onChange={handleChange('email')}
+            type="email"
+            className="form-control"
+            placeholder="Type your email"
+          />
         </div>
 
         <div className="form-group">
-          <input value={password} onChange={handleChange('password')} type="password" className="form-control" placeholder="Type your password" />
+          <input
+            value={password}
+            onChange={handleChange('password')}
+            type="password"
+            className="form-control"
+            placeholder="Type your password"
+          />
         </div>
 
         <div>

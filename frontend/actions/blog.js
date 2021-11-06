@@ -1,0 +1,33 @@
+import fetch from 'isomorphic-fetch';
+import { API } from '../config';
+
+export const createBlog = (blog, token) => {
+  console.log('the blog is');
+  console.log(blog);
+
+  return fetch(`${API}/blog`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: blog,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const listBlogsWithCategoriesAndTags = () => {
+  return fetch(`${API}/blogs-categories-tags`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
