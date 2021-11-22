@@ -67,6 +67,8 @@ exports.create = (req, res) => {
           error: 'Image should be less then 1mb in size',
         });
       }
+
+      console.log(files.photo);
       blog.photo.data = fs.readFileSync(files.photo.filepath);
       blog.photo.contentType = files.photo.mimetype;
     }
@@ -245,8 +247,8 @@ exports.update = (req, res) => {
             error: 'Image should be less then 1mb in size',
           });
         }
-        oldBlog.photo.data = fs.readFileSync(files.photo.path);
-        oldBlog.photo.contentType = files.photo.type;
+        oldBlog.photo.data = fs.readFileSync(files.photo.filepath);
+        oldBlog.photo.contentType = files.photo.mimetype;
       }
 
       oldBlog.save((err, result) => {
