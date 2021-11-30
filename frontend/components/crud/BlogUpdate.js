@@ -241,6 +241,7 @@ const BlogUpdate = ({ router }) => {
             value={body}
             placeholder="Write something amazing..."
             onChange={handleBody}
+            theme={'snow'}
           />
         </div>
 
