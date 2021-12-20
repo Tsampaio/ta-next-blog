@@ -11,3 +11,4 @@ export const DOMAIN = publicRuntimeConfig.PRODUCTION
   : publicRuntimeConfig.DOMAIN_DEVELOPMENT;
 
 export const FB_AP_ID = publicRuntimeConfig.FB_AP_ID;
+export const DISQUS_SHORTNAME = publicRuntimeConfig.DISQUS_SHORTNAME;
