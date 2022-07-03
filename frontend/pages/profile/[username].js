@@ -53,12 +53,14 @@ const UserProfile = ({ user, blogs, query }) => {
                       <p className="text-muted">Joined {moment(user.createdAt).fromNow()}</p>
                     </div>
                     <div className="col-md-4">
-                      <img
-                        src={`${API}/user/photo/${user.username}`}
-                        className="img img-fluid img-thumbnail mb-3"
-                        style={{ maxHeight: '100px', maxWidth: '100%' }}
-                        alt="user profile"
-                      />
+                      {user?.username && (
+                        <img
+                          src={`${API}/user/photo/${user.username}`}
+                          className="img img-fluid img-thumbnail mb-3"
+                          style={{ maxHeight: '100px', maxWidth: '100%' }}
+                          alt="user profile"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

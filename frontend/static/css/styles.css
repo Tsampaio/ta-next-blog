@@ -11,7 +11,7 @@ html {
 }
 
 pre.ql-syntax {
-  background-color: #23241f;
+  background-color: #282c34 !important;
   color: #f8f8f2;
   padding: 5px 10px;
 }

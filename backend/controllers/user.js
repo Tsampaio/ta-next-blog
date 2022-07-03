@@ -82,7 +82,6 @@ exports.update = (req, res) => {
       user.hashed_password = undefined;
       user.salt = undefined;
       user.photo = undefined;
-      s;
       res.json(user);
     });
   });
@@ -90,6 +89,7 @@ exports.update = (req, res) => {
 
 exports.photo = (req, res) => {
   const username = req.params.username;
+  console.log(username);
   User.findOne({ username }).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({

@@ -170,12 +170,14 @@ const ProfileUpdate = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-4">
-            <img
-              src={`${API}/user/photo/${username_for_photo}`}
-              className="img img-fluid img-thumbnail mb-3"
-              style={{ maxHeight: 'auto', maxWidth: '100%' }}
-              alt="user profile"
-            />
+            {username_for_photo && (
+              <img
+                src={`${API}/user/photo/${username_for_photo}`}
+                className="img img-fluid img-thumbnail mb-3"
+                style={{ maxHeight: 'auto', maxWidth: '100%' }}
+                alt="user profile"
+              />
+            )}
           </div>
           <div className="col-md-8 mb-5">{profileUpdateForm()}</div>
         </div>

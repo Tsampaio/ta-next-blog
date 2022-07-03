@@ -7,6 +7,8 @@ import { listBlogsWithCategoriesAndTags } from '../../actions/blog';
 import Card from '../../components/blog/Card';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
+import 'highlight.js/styles/base16/dracula.css';
+
 const Blogs = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, router }) => {
   const head = () => (
     <Head>

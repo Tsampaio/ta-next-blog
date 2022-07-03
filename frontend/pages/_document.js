@@ -7,11 +7,10 @@ class MyDocument extends Document {
         <Head>
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link
+          {/* <link
             rel="stylesheet"
             href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css"
-          />
-          <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+          /> */}
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
@@ -25,6 +24,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
         </body>
       </Html>
     );

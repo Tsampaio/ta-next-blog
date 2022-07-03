@@ -7,6 +7,7 @@ import { getCookie, isAuth } from '../../actions/auth';
 import { getCategories } from '../../actions/category';
 import { getTags } from '../../actions/tag';
 import { createBlog } from '../../actions/blog';
+import 'highlight.js/styles/base16/dracula.css';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 import { QuillModules, QuillFormats } from '../../helpers/quill';
