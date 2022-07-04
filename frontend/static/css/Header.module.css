@@ -1,0 +1,48 @@
+.navbar {
+  align-items: center;
+  background-color: #002333;
+  border-bottom: 1px solid #000;
+  display: flex;
+  height: 60px;
+  width: 100%;
+  color: #fff;
+}
+
+.logoLink {
+  align-items: center;
+  display: flex;
+  padding: 0;
+  height: auto;
+}
+
+.logo {
+  width: 140px;
+}
+
+.divCol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.listItem {
+  display: inline-block;
+  list-style: none;
+}
+
+.menuUl {
+  margin: 0;
+}
+
+.menuLink {
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 15px;
+}
+
+.menuLink:hover {
+  color: #00ff84;
+  text-decoration: none;
+}
