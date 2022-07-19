@@ -62,7 +62,7 @@ export const signout = (next) => {
 
 // set cookie
 export const setCookie = (key, value) => {
-  if (process.browser) {
+  if (typeof window) {
     cookie.set(key, value, {
       expires: 1,
     });
@@ -70,7 +70,7 @@ export const setCookie = (key, value) => {
 };
 
 export const removeCookie = (key) => {
-  if (process.browser) {
+  if (typeof window) {
     cookie.remove(key, {
       expires: 1,
     });
@@ -78,19 +78,19 @@ export const removeCookie = (key) => {
 };
 // get cookie
 export const getCookie = (key) => {
-  if (process.browser) {
+  if (typeof window) {
     return cookie.get(key);
   }
 };
 // localstorage
 export const setLocalStorage = (key, value) => {
-  if (process.browser) {
+  if (typeof window) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 };
 
 export const removeLocalStorage = (key) => {
-  if (process.browser) {
+  if (typeof window) {
     localStorage.removeItem(key);
   }
 };
@@ -102,7 +102,7 @@ export const authenticate = (data, next) => {
 };
 
 export const isAuth = () => {
-  if (process.browser) {
+  if (typeof window) {
     const cookieChecked = getCookie('token');
     if (cookieChecked) {
       if (localStorage.getItem('user')) {
@@ -115,7 +115,7 @@ export const isAuth = () => {
 };
 
 export const updateUser = (user, next) => {
-  if (process.browser) {
+  if (typeof window) {
     if (localStorage.getItem('user')) {
       let auth = JSON.parse(localStorage.getItem('user'));
       auth = user;

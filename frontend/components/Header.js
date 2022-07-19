@@ -73,7 +73,7 @@ const Header = () => {
                 </li>
               )}
               <li className={styles.listItem}>
-                <Link href="/blogs">
+                <Link href="/">
                   <a className={styles.menuLink}>BLOG</a>
                 </Link>
               </li>
@@ -91,6 +91,7 @@ const Header = () => {
                   </Link>
                 </li>
               )}
+
               {isAuth() && isAuth().role === 1 && (
                 <li className={styles.listItem}>
                   <Link href="/admin">
@@ -105,6 +106,7 @@ const Header = () => {
                   </Link>
                 </li>
               )}
+
               {/* <React.Fragment>
                 <NavItem>
                   <Link href="/blogs">
