@@ -1,0 +1,60 @@
+.featuredImage {
+  object-fit: cover;
+  max-height: 300px;
+  width: 100%;
+}
+
+.blogSection {
+  display: flex;
+}
+
+.blogDate {
+  text-align: center;
+  background-color: #fff;
+}
+
+.blogDate h3 {
+  font-size: 66px;
+  color: #0a2b4e;
+  font-weight: bold;
+  margin: 0;
+}
+
+.blogDate p {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.blogDetails .blogTitle {
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+  color: #0a2b4e;
+  display: inline-block;
+}
+
+.separator {
+  border-right: 1px solid rgba(204, 204, 204, 0.48);
+}
+
+.blogCategories {
+  display: flex;
+}
+
+.blogCategories h6 {
+  color: rgb(153, 153, 153);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.blogCategories h5 {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.blogPreview {
+  font-size: 16px;
+}

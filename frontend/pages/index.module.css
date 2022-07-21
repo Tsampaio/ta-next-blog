@@ -1,0 +1,12 @@
+.categoriesNav {
+  display: flex;
+  align-items: center;
+}
+
+.categoriesNav h6 {
+  margin: 0;
+}
+
+.blogBackground {
+  background-color: #fff;
+}

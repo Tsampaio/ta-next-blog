@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { listBlogsWithCategoriesAndTags } from '../actions/blog';
 import Card from '../components/blog/Card';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../config';
+import styles from './index.module.css';
 
 import 'highlight.js/styles/base16/dracula.css';
 
@@ -67,10 +68,12 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
     return blogs.map((blog, i) => {
       // ()
       return (
-        <article key={i}>
-          <Card blog={blog} />
+        <>
+          <article key={i} className={styles.blogBackground}>
+            <Card blog={blog} />
+          </article>
           <hr />
-        </article>
+        </>
       );
     });
   };
@@ -78,7 +81,7 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
   const showAllCategories = () => {
     return categories.map((c, i) => (
       <Link href={`/categories/${c.slug}`} key={i}>
-        <a className="btn btn-primary mr-1 ml-1 mt-3">{c.name}</a>
+        <a className="mr-1 ml-1">{c.name.toUpperCase()} |</a>
       </Link>
     ));
   };
@@ -104,23 +107,29 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
       {head()}
       <Layout>
         <main>
-          <div className="container-fluid">
+          <div className="container">
             <header>
-              <div className="col-md-12 pt-3">
+              {/* <div className="col-md-12 pt-3">
                 <h1 className="display-4 font-weight-bold text-center">
                   Programming blogs and tutorials
                 </h1>
-              </div>
-              <section>
-                <div className="pb-5 text-center">
+              </div> */}
+              <section className="pb-5">
+                <div className={`text-center ${styles.categoriesNav}`}>
+                  <h6>Categories: </h6>
                   {showAllCategories()}
-                  <br />
-                  {showAllTags()}
+                  {/* <br />
+                  {showAllTags()} */}
                 </div>
+                {/* <hr /> */}
               </section>
             </header>
           </div>
-          <div className="container-fluid">{showAllBlogs()}</div>
+          <div className="container">
+            <div className="row">
+              <div className="col-8">{showAllBlogs()}</div>
+            </div>
+          </div>
           <div className="container-fluid">{showLoadedBlogs()}</div>
           <div className="text-center pt-5 pb-5">{loadMoreButton()}</div>
         </main>

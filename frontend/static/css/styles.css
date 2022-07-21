@@ -11,6 +11,11 @@ html {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+  color: #333333;
+}
+
+body {
+  background-color: #f2f2f2;
 }
 
 h1,

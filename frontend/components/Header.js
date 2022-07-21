@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
@@ -30,10 +30,17 @@ Router.onRouteChangeError = (url) => NProgress.done();
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    if (!pageLoaded) {
+      setPageLoaded(true);
+    }
+  }, []);
 
   return (
     <>
@@ -58,33 +65,35 @@ const Header = () => {
                   <a className={styles.menuLink}>COURSES</a>
                 </Link>
               </li>
-              {!isAuth() && (
+              {pageLoaded && (
                 <li className={styles.listItem}>
                   <Link href="https://app.telmo.academy/courses" passHref={true}>
                     <a className={styles.menuLink}>MEMBERSHIP</a>
                   </Link>
                 </li>
               )}
-              {!isAuth() && (
+              {pageLoaded && isAuth()?.role !== 1 && (
                 <li className={styles.listItem}>
                   <Link href="https://app.telmo.academy/courses" passHref={true}>
                     <a className={styles.menuLink}>Old Website</a>
                   </Link>
                 </li>
               )}
-              <li className={styles.listItem}>
-                <Link href="/">
-                  <a className={styles.menuLink}>BLOG</a>
-                </Link>
-              </li>
-              {!isAuth() && (
+              {pageLoaded && (
+                <li className={styles.listItem}>
+                  <Link href="/">
+                    <a className={styles.menuLink}>BLOG</a>
+                  </Link>
+                </li>
+              )}
+              {pageLoaded && !isAuth() && (
                 <li className={styles.listItem}>
                   <Link href="/blogs">
                     <a className={styles.menuLink}>Profile</a>
                   </Link>
                 </li>
               )}
-              {isAuth() && isAuth().role === 1 && (
+              {pageLoaded && isAuth() && isAuth().role === 1 && (
                 <li className={styles.listItem}>
                   <Link href="/admin">
                     <a className={styles.menuLink}>Dashboard</a>
@@ -92,14 +101,14 @@ const Header = () => {
                 </li>
               )}
 
-              {isAuth() && isAuth().role === 1 && (
+              {pageLoaded && isAuth() && isAuth().role === 1 && (
                 <li className={styles.listItem}>
                   <Link href="/admin">
                     <a className={styles.menuLink}>Logout</a>
                   </Link>
                 </li>
               )}
-              {isAuth() && isAuth().role === 1 && (
+              {pageLoaded && isAuth() && isAuth().role === 1 && (
                 <li className={styles.listItem}>
                   <Link href="/user/crud/blog">
                     <a className={styles.menuLink}>Write a blog</a>
