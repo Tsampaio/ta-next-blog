@@ -8,12 +8,15 @@ import renderHTML from 'react-render-html';
 import moment from 'moment';
 import SmallCard from '../../components/blog/SmallCard';
 import DisqusThread from '../../components/DisqusThread';
+import styles from './slug.module.css';
+import 'react-quill/dist/quill.core.css';
+// import 'react-quill/dist/quill.snow.css';
 
 // import hljs from 'highlight.js/lib/core';
 // import javascript from 'highlight.js/lib/languages/javascript';
 // hljs.registerLanguage('javascript', javascript);
-// import 'highlight.js/styles/tomorrow-night-blue.css';
-import 'highlight.js/styles/base16/dracula.css';
+import 'highlight.js/styles/tomorrow-night-blue.css';
+// import 'highlight.js/styles/atom-one-dark.css';
 
 const SingleBlog = ({ blog, query }) => {
   const [related, setRelated] = useState([]);
@@ -88,6 +91,8 @@ const SingleBlog = ({ blog, query }) => {
 
   // const highlightedCode = renderHTML(hljs.highlightAuto('const name = "Hello"').value);
   const highlightedCode = 'const name = 20';
+  console.log(blog.body);
+  console.log(query);
   return (
     <>
       {head()}
@@ -100,44 +105,63 @@ const SingleBlog = ({ blog, query }) => {
                   <img
                     src={`${API}/blog/photo/${blog.slug}`}
                     alt={blog.title}
-                    className="img img-fluid featured-image"
+                    className={`img img-fluid ${styles.featuredImage}`}
                   />
                 </div>
               </section>
 
-              <section>
+              <section className="mt-3">
                 <div className="container">
-                  <h1 className="display-2 pb-3 pt-3 text-center font-weight-bold">{blog.title}</h1>
-                  <p className="lead mt-3 mark">
-                    Written by{' '}
-                    <Link href={`/profile/${blog.postedBy.username}`}>
-                      <a>{blog.postedBy.username}</a>
-                    </Link>{' '}
-                    | Published {moment(blog.updatedAt).fromNow()}
-                  </p>
+                  <div className={styles.blogNavigation} aria-label="breadcrumb">
+                    <ul className="breadcrumb">
+                      <li className="breadcrumb-item">
+                        <Link href={`${DOMAIN}`}>
+                          <a className="mr-1 ml-1 mt-3">Blogs</a>
+                        </Link>
+                      </li>
 
-                  <div className="pb-3">
-                    {showBlogCategories(blog)}
-                    {showBlogTags(blog)}
-                    <br />
-                    <br />
+                      <li className={`${styles.navActive} breadcrumb-item active`}>{query.slug}</li>
+                    </ul>
                   </div>
+                  <h1 className={`pb-3 pt-3 text-center font-weight-bold ${styles.blogTitle}`}>
+                    {blog.title}
+                  </h1>
                 </div>
               </section>
             </div>
 
             <div className="container">
               <section>
-                <div className="col-md-12 lead">{renderHTML(blog.body)}</div>
+                <div className={`col-md-12 lead ${styles.blogBody} ql-editor`}>
+                  {renderHTML(blog.body)}
+                </div>
               </section>
             </div>
 
             <div className="container">
-              <h4 className="text-center pt-5 pb-5 h2">Related blogs</h4>
+              <section>
+                <div className="pb-3">
+                  {showBlogCategories(blog)}
+                  {showBlogTags(blog)}
+                </div>
+              </section>
+              <section>
+                <p className="lead mt-3 mark">
+                  Written by{' '}
+                  <Link href={`/profile/${blog.postedBy.username}`}>
+                    <a>{blog.postedBy.username}</a>
+                  </Link>{' '}
+                  | Published - {moment(blog.updatedAt).format('d MMMM yy')}
+                </p>
+              </section>
+            </div>
+
+            <div className="container">
+              <h4 className="text-center py-4 h2">Related blogs</h4>
               <div className="row">{showRelatedBlog()}</div>
             </div>
 
-            {/* <div className="container pb-5">{showComments()}</div> */}
+            <div className="container pb-5">{showComments()}</div>
           </article>
         </main>
       </Layout>

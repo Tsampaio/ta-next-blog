@@ -50,7 +50,9 @@ const UserProfile = ({ user, blogs, query }) => {
                   <div className="row">
                     <div className="col-md-8">
                       <h5>{user.name}</h5>
-                      <p className="text-muted">Joined {moment(user.createdAt).fromNow()}</p>
+                      <p className="text-muted">
+                        Joined {moment(user.createdAt).format('dd MMMM yy')}
+                      </p>
                     </div>
                     <div className="col-md-4">
                       {user?.username && (

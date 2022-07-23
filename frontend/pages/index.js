@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { listBlogsWithCategoriesAndTags } from '../actions/blog';
 import Card from '../components/blog/Card';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../config';
+import Search from '../components/blog/Search';
 import styles from './index.module.css';
 
 import 'highlight.js/styles/base16/dracula.css';
@@ -81,7 +82,7 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
   const showAllCategories = () => {
     return categories.map((c, i) => (
       <Link href={`/categories/${c.slug}`} key={i}>
-        <a className="mr-1 ml-1">{c.name.toUpperCase()} |</a>
+        <a className={`btn btn-primary mr-1 ${i === 0 ? '' : 'ml-1'}`}>{c.name.toUpperCase()}</a>
       </Link>
     ));
   };
@@ -89,7 +90,7 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
   const showAllTags = () => {
     return tags.map((t, i) => (
       <Link href={`/tags/${t.slug}`} key={i}>
-        <a className="btn btn-outline-primary mr-1 ml-1 mt-3">{t.name}</a>
+        <a className={`btn btn-outline-primary mr-1 ${i === 0 ? '' : 'ml-1'} mt-3`}>{t.name}</a>
       </Link>
     ));
   };
@@ -106,28 +107,29 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
     <React.Fragment>
       {head()}
       <Layout>
-        <main>
-          <div className="container">
+        <main className={styles.allBlogsCtn}>
+          {/* <div className="container">
             <header>
-              {/* <div className="col-md-12 pt-3">
-                <h1 className="display-4 font-weight-bold text-center">
-                  Programming blogs and tutorials
-                </h1>
-              </div> */}
-              <section className="pb-5">
-                <div className={`text-center ${styles.categoriesNav}`}>
-                  <h6>Categories: </h6>
-                  {showAllCategories()}
-                  {/* <br />
-                  {showAllTags()} */}
-                </div>
-                {/* <hr /> */}
-              </section>
+             
             </header>
-          </div>
+          </div> */}
           <div className="container">
             <div className="row">
               <div className="col-8">{showAllBlogs()}</div>
+              <div className="col-4">
+                <section className="pb-5">
+                  <div className={`${styles.categoriesNav}`}>
+                    <Search />
+                    <h6 className="mb-2">Categories: </h6>
+                    <div className="mb-2">{showAllCategories()}</div>
+
+                    <br />
+                    <h6>Tags: </h6>
+                    <div className="mb-2">{showAllTags()}</div>
+                  </div>
+                  {/* <hr /> */}
+                </section>
+              </div>
             </div>
           </div>
           <div className="container-fluid">{showLoadedBlogs()}</div>
@@ -140,7 +142,7 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
 
 Index.getInitialProps = () => {
   let skip = 0;
-  let limit = 2;
+  let limit = 3;
   return listBlogsWithCategoriesAndTags(skip, limit).then((data) => {
     if (data.error) {
       console.log(data.error);

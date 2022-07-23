@@ -32,16 +32,19 @@ const Search = () => {
 
   const searchedBlogs = (results = []) => {
     return (
-      <div className="jumbotron bg-white">
-        {message && <p className="pt-4 text-muted font-italic">{message}</p>}
+      <div className="px-4 py-4 bg-white">
+        {message && <p className="text-muted font-italic">{message}</p>}
 
         {results.map((blog, i) => {
           return (
-            <div key={i}>
-              <Link href={`/blogs/${blog.slug}`}>
-                <a className="text-primary">{blog.title}</a>
-              </Link>
-            </div>
+            <>
+              <div key={i}>
+                <Link href={`/blogs/${blog.slug}`}>
+                  <a className="text-primary">{blog.title}</a>
+                </Link>
+              </div>
+              {i !== results.length - 1 ? <hr /> : ''}
+            </>
           );
         })}
       </div>
@@ -50,31 +53,25 @@ const Search = () => {
 
   const searchForm = () => (
     <form onSubmit={searchSubmit}>
-      <div className="row">
-        <div className="col-md-8">
-          <input
-            type="search"
-            className="form-control"
-            placeholder="Search blogs"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="col-md-4">
-          <button className="btn btn-block btn-outline-primary" type="submit">
-            Search
-          </button>
-        </div>
+      <div>
+        <input
+          type="search"
+          className="form-control w-100 mb-3"
+          placeholder="Search blogs"
+          onChange={handleChange}
+        />
       </div>
+
+      <button className="btn btn-block btn-outline-primary" type="submit">
+        Search
+      </button>
     </form>
   );
 
   return (
-    <div className="container-fluid">
-      <div className="pt-3 pb-5">{searchForm()}</div>
-      {searched && (
-        <div style={{ marginTop: '-120px', marginBottom: '-80px' }}>{searchedBlogs(results)}</div>
-      )}
+    <div className="mb-4">
+      <div className="pb-3">{searchForm()}</div>
+      {searched && <ul>{searchedBlogs(results)}</ul>}
     </div>
   );
 };

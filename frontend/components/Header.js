@@ -176,7 +176,6 @@ const Header = () => {
           </div>
         </Row>
       </Navbar>
-      <Search />
     </>
   );
 };

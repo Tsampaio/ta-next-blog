@@ -11,6 +11,7 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../../node_modules/react-quill/dist/quill.snow.css';
 import { QuillModules, QuillFormats } from '../../helpers/quill';
 import { API } from '../../config';
+import FormData from 'form-data';
 
 const BlogUpdate = ({ router }) => {
   const [body, setBody] = useState('');
@@ -25,7 +26,7 @@ const BlogUpdate = ({ router }) => {
     title: '',
     error: '',
     success: '',
-    formData: new FormData(),
+    formData: typeof window && new FormData(),
     title: '',
     body: '',
   });

@@ -1,7 +1,11 @@
-.categoriesNav {
+.allBlogsCtn {
+  margin-top: 80px;
+}
+
+/* .categoriesNav {
   display: flex;
   align-items: center;
-}
+} */
 
 .categoriesNav h6 {
   margin: 0;
