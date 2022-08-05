@@ -46,7 +46,7 @@ const Card = ({ blog }) => {
           </div>
         </section>
       </header>
-      <section className={`${styles.blogSection} mt-4 mb-4`}>
+      <section className={`${styles.blogSection} mt-4 mb-0 mb-md-4`}>
         <div className={`${styles.blogDate} pl-4 pr-4 ${styles.separator}`}>
           <h3>{moment(blog.updatedAt).format('DD')}</h3>
           <p>{moment(blog.updatedAt).format('MMMM yy')}</p>
@@ -56,16 +56,16 @@ const Card = ({ blog }) => {
             <a className={`${styles.blogTitle} mb-3`}>{blog.title}</a>
           </Link>
 
-          <div className={styles.blogCategories}>
-            <div className={`${styles.separator} pr-4`}>
+          <div className={`${styles.blogCategories}`}>
+            <div className={`${styles.separator} ${styles.postedBy} pr-4`}>
               <h6>Posted by</h6>
               <h5>{blog.postedBy.username}</h5>
             </div>
-            <div className={`${styles.separator} px-4`}>
+            <div className={`${styles.separator} pl-0 pr-4 px-md-4`}>
               <h6>Categories</h6>
               <h5>{showBlogCategories(blog)}</h5>
             </div>
-            <div className="pl-4">
+            <div className={`pl-0 pl-sm-4 ${styles.tags}`}>
               <h6>Tags</h6>
               <h5>{showBlogTags(blog)}</h5>
             </div>

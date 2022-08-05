@@ -9,12 +9,13 @@
 }
 
 .blogDate {
+  display: none;
   text-align: center;
   background-color: #fff;
 }
 
 .blogDate h3 {
-  font-size: 66px;
+  font-size: 24px;
   color: #0a2b4e;
   font-weight: bold;
   margin: 0;
@@ -26,9 +27,13 @@
   margin: 0;
 }
 
+.blogDetails {
+  max-width: 100%;
+}
+
 .blogDetails .blogTitle {
   font-family: 'Roboto Slab', sans-serif;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 40px;
   color: #0a2b4e;
@@ -40,7 +45,8 @@
 }
 
 .blogCategories {
-  display: flex;
+  display: none;
+  flex-wrap: wrap;
 }
 
 .blogCategories h6 {
@@ -57,4 +63,38 @@
 
 .blogPreview {
   font-size: 16px;
+}
+
+.postedBy {
+  display: none;
+}
+
+.tags {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .blogDate h3 {
+    font-size: 66px;
+  }
+
+  .blogDetails .blogTitle {
+    font-size: 30px;
+  }
+
+  .blogDate {
+    display: block;
+  }
+
+  .postedBy {
+    display: block;
+  }
+
+  .tags {
+    width: auto;
+  }
+
+  .blogCategories {
+    display: flex;
+  }
 }

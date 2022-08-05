@@ -63,7 +63,7 @@ const Search = () => {
         />
       </div>
 
-      <button className="btn btn-block btn-outline-primary" type="submit">
+      <button className="btn btn-block greenBtn" type="submit">
         Search
       </button>
     </form>

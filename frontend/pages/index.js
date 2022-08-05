@@ -70,7 +70,7 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
       // ()
       return (
         <>
-          <article key={i} className={styles.blogBackground}>
+          <article key={i} className={`${styles.blogBackground} cardBorder`}>
             <Card blog={blog} />
           </article>
           <hr />
@@ -97,9 +97,12 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
 
   const showLoadedBlogs = () => {
     return loadedBlogs.map((blog, i) => (
-      <article key={i} className={styles.blogBackground}>
-        <Card blog={blog} />
-      </article>
+      <>
+        <article key={i} className={`${styles.blogBackground} cardBorder`}>
+          <Card blog={blog} />
+        </article>
+        <hr />
+      </>
     ));
   };
 
@@ -115,9 +118,12 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
           </div> */}
           <div className="container">
             <div className="row">
-              <div className="col-8">{showAllBlogs()}</div>
-              <div className="col-4">
-                <section className="pb-5">
+              <div className="col-12 col-lg-8">
+                <div>{showAllBlogs()}</div>
+                <div>{showLoadedBlogs()}</div>
+              </div>
+              <div className={`col-12 col-lg-4 cardBorder`}>
+                <section className="py-5 px-3">
                   <div className={`${styles.categoriesNav}`}>
                     <Search />
                     <h6 className="mb-2">Categories: </h6>
@@ -132,11 +138,11 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
               </div>
             </div>
           </div>
-          <div className="container">
+          {/* <div className="container">
             <div className="row">
               <div className="col-8">{showLoadedBlogs()}</div>
             </div>
-          </div>
+          </div> */}
           <div className="text-center pt-5 pb-5">{loadMoreButton()}</div>
         </main>
       </Layout>
