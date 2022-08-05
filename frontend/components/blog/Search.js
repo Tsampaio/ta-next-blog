@@ -2,6 +2,7 @@ import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import { useState, useEffect } from 'react';
 import { listSearch } from '../../actions/blog';
+import styles from './Search.module.css';
 
 const Search = () => {
   const [values, setValues] = useState({
@@ -32,7 +33,7 @@ const Search = () => {
 
   const searchedBlogs = (results = []) => {
     return (
-      <div className="px-4 py-4 bg-white">
+      <div className={`px-4 py-4 bg-white ${styles.resultsDiv}`}>
         {message && <p className="text-muted font-italic">{message}</p>}
 
         {results.map((blog, i) => {

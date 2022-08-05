@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { singleBlog, listRelated } from '../../actions/blog';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import renderHTML from 'react-render-html';
@@ -21,6 +22,8 @@ import 'highlight.js/styles/tomorrow-night-blue.css';
 const SingleBlog = ({ blog, query }) => {
   const [related, setRelated] = useState([]);
 
+  const router = useRouter();
+
   const loadRelated = () => {
     listRelated({ blog }).then((data) => {
       if (data) {
@@ -35,7 +38,7 @@ const SingleBlog = ({ blog, query }) => {
 
   useEffect(() => {
     loadRelated();
-  }, []);
+  }, [router]);
 
   const head = () => (
     <Head>
@@ -73,7 +76,7 @@ const SingleBlog = ({ blog, query }) => {
 
   const showRelatedBlog = () => {
     return related.map((blog, i) => (
-      <div className="col-md-4" key={i}>
+      <div className="col-md-4 mb-4" key={i}>
         <article>
           <SmallCard blog={blog} />
         </article>
@@ -89,10 +92,6 @@ const SingleBlog = ({ blog, query }) => {
     );
   };
 
-  // const highlightedCode = renderHTML(hljs.highlightAuto('const name = "Hello"').value);
-  const highlightedCode = 'const name = 20';
-  console.log(blog.body);
-  console.log(query);
   return (
     <>
       {head()}

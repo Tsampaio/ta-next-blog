@@ -31,8 +31,7 @@ strong {
 }
 
 .ql-video {
-  height: 400px;
-  width: 80%;
+  width: 90%;
 }
 
 #nprogress .bar {
@@ -57,4 +56,11 @@ pre.ql-syntax {
   width: 100%;
   max-height: 500px;
   object-fit: cover;
+}
+
+@media only screen and (min-width: 768px) {
+  .ql-video {
+    height: 400px;
+    width: 80%;
+  }
 }

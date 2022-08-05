@@ -2,6 +2,7 @@ import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { API } from '../../config';
+import styles from './SmallCard.module.css';
 
 const SmallCard = ({ blog }) => {
   return (
@@ -10,8 +11,7 @@ const SmallCard = ({ blog }) => {
         <Link href={`/blogs/${blog.slug}`}>
           <a>
             <img
-              className="img img-fluid"
-              style={{ height: '250px', width: '100%', objectFit: 'cover' }}
+              className={`img img-fluid ${styles.blogImage}`}
               src={`${API}/blog/photo/${blog.slug}`}
               alt={blog.title}
             />
@@ -19,18 +19,18 @@ const SmallCard = ({ blog }) => {
         </Link>
       </section>
 
-      <div className="card-body">
+      <div className="card-body pb-0">
         <section>
           <Link href={`/blogs/${blog.slug}`}>
             <a>
               <h5 className="card-title">{blog.title}</h5>
             </a>
           </Link>
-          <p className="card-text">{renderHTML(blog.excerpt)}</p>
+          <p className="card-text d-none d-lg-block">{renderHTML(blog.excerpt)}</p>
         </section>
       </div>
 
-      <div className="card-body">
+      <div className="card-body pt-1">
         Posted {moment(blog.updatedAt).fromNow()} by{' '}
         <Link href={`/profile/${blog.postedBy.username}`}>
           <a>{blog.postedBy.username}</a>
