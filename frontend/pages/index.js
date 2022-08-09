@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import Layout from '../components/Layout';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { listBlogsWithCategoriesAndTags } from '../actions/blog';
 import Card from '../components/blog/Card';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../config';
@@ -82,7 +82,7 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
   const showAllCategories = () => {
     return categories.map((c, i) => (
       <Link href={`/categories/${c.slug}`} key={i}>
-        <a className={`btn btn-primary mr-1 ${i === 0 ? '' : 'ml-1'}`}>{c.name.toUpperCase()}</a>
+        <a className={`mr-2`}>{c.name.toUpperCase()}</a>
       </Link>
     ));
   };
@@ -90,7 +90,7 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
   const showAllTags = () => {
     return tags.map((t, i) => (
       <Link href={`/tags/${t.slug}`} key={i}>
-        <a className={`btn btn-outline-primary mr-1 ${i === 0 ? '' : 'ml-1'} mt-3`}>{t.name}</a>
+        <a className={`mr-2`}>{t.name.toUpperCase()}</a>
       </Link>
     ));
   };
@@ -122,15 +122,15 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
                 <div>{showAllBlogs()}</div>
                 <div>{showLoadedBlogs()}</div>
               </div>
-              <div className={`col-12 col-lg-4 cardBorder`}>
-                <section className="py-5 px-3">
+              <div className={`col-12 col-lg-4`}>
+                <section className={`p-4 cardBorder ${styles.sideBar}`}>
                   <div className={`${styles.categoriesNav}`}>
                     <Search />
+                    <hr />
                     <h6 className="mb-2">Categories: </h6>
                     <div className="mb-2">{showAllCategories()}</div>
-
-                    <br />
-                    <h6>Tags: </h6>
+                    <hr />
+                    <h6 className="mb-2">Tags: </h6>
                     <div className="mb-2">{showAllTags()}</div>
                   </div>
                   {/* <hr /> */}

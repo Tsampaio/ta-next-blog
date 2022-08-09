@@ -70,7 +70,7 @@ const Search = () => {
   );
 
   return (
-    <div className="mb-4">
+    <div className="mb-2">
       <div className="pb-3">{searchForm()}</div>
       {searched && <ul>{searchedBlogs(results)}</ul>}
     </div>

@@ -16,18 +16,18 @@ const Footer = () => {
     <footer className={styles.footer}>
       <Container>
         <Row className={styles.footerSocialCtn}>
-          <div class={styles.footerLogoSocialCtn}>
-            <div class={styles.footerRights}>
+          <div className={styles.footerLogoSocialCtn}>
+            <div className={styles.footerRights}>
               <p>© Telmo Academy 2022</p>
             </div>
-            <div class={styles.footerSocial}>
+            <div className={styles.footerSocial}>
               <a
                 href="https://www.youtube.com/user/Telmo87/"
                 rel="noopener noreferrer"
                 target="_blank"
                 className={styles.socialLink}
               >
-                <i class="fab fa-youtube"></i>
+                <i className="fab fa-youtube" />
               </a>
               <a
                 href="https://twitter.com/DevTelmo"
@@ -35,7 +35,7 @@ const Footer = () => {
                 target="_blank"
                 className={styles.socialLink}
               >
-                <i class="fab fa-twitter"></i>
+                <i className="fab fa-twitter" />
               </a>
               <a
                 href="https://www.instagram.com/sampaiotravels"
@@ -43,11 +43,11 @@ const Footer = () => {
                 target="_blank"
                 className={styles.socialLink}
               >
-                <i class="fab fa-instagram"></i>
+                <i className="fab fa-instagram" />
               </a>
             </div>
           </div>
-          <div class={styles.footerLinks}>
+          <div className={styles.footerLinks}>
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
             <a href="/contact">Contact</a>

@@ -14,3 +14,25 @@
 .blogBackground {
   background-color: #fff;
 }
+
+.sideBar {
+  top: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.sticky {
+  top: 10px;
+  position: fixed;
+}
+
+@media (min-width: 768px) {
+  .sticky {
+    width: 290px;
+  }
+}
+
+@media (min-width: 992px) {
+  .sticky {
+    width: 320px;
+  }
+}
