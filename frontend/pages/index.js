@@ -8,6 +8,7 @@ import Card from '../components/blog/Card';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../config';
 import Search from '../components/blog/Search';
 import styles from './index.module.css';
+import Sidebar from '../components/Sidebar';
 
 import 'highlight.js/styles/base16/dracula.css';
 
@@ -79,21 +80,21 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
     });
   };
 
-  const showAllCategories = () => {
-    return categories.map((c, i) => (
-      <Link href={`/categories/${c.slug}`} key={i}>
-        <a className={`mr-2`}>{c.name.toUpperCase()}</a>
-      </Link>
-    ));
-  };
+  // const showAllCategories = () => {
+  //   return categories.map((c, i) => (
+  //     <Link href={`/categories/${c.slug}`} key={i}>
+  //       <a className={`mr-2`}>{c.name.toUpperCase()}</a>
+  //     </Link>
+  //   ));
+  // };
 
-  const showAllTags = () => {
-    return tags.map((t, i) => (
-      <Link href={`/tags/${t.slug}`} key={i}>
-        <a className={`mr-2`}>{t.name.toUpperCase()}</a>
-      </Link>
-    ));
-  };
+  // const showAllTags = () => {
+  //   return tags.map((t, i) => (
+  //     <Link href={`/tags/${t.slug}`} key={i}>
+  //       <a className={`mr-2`}>{t.name.toUpperCase()}</a>
+  //     </Link>
+  //   ));
+  // };
 
   const showLoadedBlogs = () => {
     return loadedBlogs.map((blog, i) => (
@@ -111,11 +112,6 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
       {head()}
       <Layout>
         <main className={styles.allBlogsCtn}>
-          {/* <div className="container">
-            <header>
-             
-            </header>
-          </div> */}
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-8">
@@ -123,26 +119,11 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
                 <div>{showLoadedBlogs()}</div>
               </div>
               <div className={`col-12 col-lg-4`}>
-                <section className={`p-4 cardBorder ${styles.sideBar}`}>
-                  <div className={`${styles.categoriesNav}`}>
-                    <Search />
-                    <hr />
-                    <h6 className="mb-2">Categories: </h6>
-                    <div className="mb-2">{showAllCategories()}</div>
-                    <hr />
-                    <h6 className="mb-2">Tags: </h6>
-                    <div className="mb-2">{showAllTags()}</div>
-                  </div>
-                  {/* <hr /> */}
-                </section>
+                <Sidebar categories={categories} tags={tags} />
               </div>
             </div>
           </div>
-          {/* <div className="container">
-            <div className="row">
-              <div className="col-8">{showLoadedBlogs()}</div>
-            </div>
-          </div> */}
+
           <div className="text-center pt-5 pb-5">{loadMoreButton()}</div>
         </main>
       </Layout>

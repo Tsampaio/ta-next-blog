@@ -5,9 +5,12 @@ import { singleCategory } from '../../actions/category';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
+import { listBlogsWithCategoriesAndTags } from '../../actions/blog';
 import Card from '../../components/blog/Card';
+import Sidebar from '../../components/Sidebar';
+import styles from './Categories.module.css';
 
-const Category = ({ category, blogs, query }) => {
+const Category = ({ category, blogs, query, categories, tags }) => {
   const head = () => (
     <Head>
       <title>
@@ -32,19 +35,30 @@ const Category = ({ category, blogs, query }) => {
     <>
       {head()}
       <Layout>
-        <main>
-          <div className="container-fluid text-center">
-            <header>
-              <div className="col-md-12 pt-3">
-                <h1 className="display-4 font-weight-bold">{category.name}</h1>
+        <main className={styles.allBlogsCtn}>
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <h1 className="display-5 font-weight-bold mb-4">
+                  Blogs with category: {category.name.toUpperCase()}
+                </h1>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 col-lg-8">
                 {blogs.map((b, i) => (
-                  <div>
-                    <Card key={i} blog={b} />
+                  <>
+                    <article key={i} className={`cardBorder`}>
+                      <Card key={i} blog={b} />
+                    </article>
                     <hr />
-                  </div>
+                  </>
                 ))}
               </div>
-            </header>
+              <div className={`col-12 col-lg-4`}>
+                <Sidebar categories={categories} tags={tags} />
+              </div>
+            </div>
           </div>
         </main>
       </Layout>
@@ -57,7 +71,23 @@ Category.getInitialProps = ({ query }) => {
     if (data.error) {
       console.log(data.error);
     } else {
-      return { category: data.category, blogs: data.blogs, query };
+      let skip = 0;
+      let limit = 3;
+
+      return listBlogsWithCategoriesAndTags(skip, limit).then((data2) => {
+        if (data.error) {
+          console.log(data.error);
+          return '';
+        } else {
+          return {
+            category: data.category,
+            blogs: data.blogs,
+            query,
+            categories: data2.categories,
+            tags: data2.tags,
+          };
+        }
+      });
     }
   });
 };
