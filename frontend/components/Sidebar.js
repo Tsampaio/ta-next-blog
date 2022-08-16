@@ -26,7 +26,7 @@ import Search from './blog/Search';
 
 const Sidebar = ({ categories, tags }) => {
   const showAllCategories = () => {
-    return categories.map((c, i) => (
+    return categories?.map((c, i) => (
       <Link href={`/categories/${c.slug}`} key={i}>
         <a className={`mr-2`}>{c.name.toUpperCase()}</a>
       </Link>
@@ -34,7 +34,7 @@ const Sidebar = ({ categories, tags }) => {
   };
 
   const showAllTags = () => {
-    return tags.map((t, i) => (
+    return tags?.map((t, i) => (
       <Link href={`/tags/${t.slug}`} key={i}>
         <a className={`mr-2`}>{t.name.toUpperCase()}</a>
       </Link>

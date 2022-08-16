@@ -67,7 +67,7 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
   };
 
   const showAllBlogs = () => {
-    return blogs.map((blog, i) => {
+    return blogs?.map((blog, i) => {
       // ()
       return (
         <>
@@ -135,14 +135,14 @@ Index.getInitialProps = () => {
   let skip = 0;
   let limit = 3;
   return listBlogsWithCategoriesAndTags(skip, limit).then((data) => {
-    if (data.error) {
+    if (data?.error) {
       console.log(data.error);
     } else {
       return {
-        blogs: data.blogs,
-        categories: data.categories,
-        tags: data.tags,
-        totalBlogs: data.size,
+        blogs: data?.blogs,
+        categories: data?.categories,
+        tags: data?.tags,
+        totalBlogs: data?.size,
         blogsLimit: limit,
         blogSkip: skip,
       };

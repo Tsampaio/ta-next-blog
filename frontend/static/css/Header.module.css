@@ -32,6 +32,7 @@
 
 .menuUl {
   margin: 0;
+  display: none;
 }
 
 .menuLink {
@@ -45,4 +46,28 @@
 .menuLink:hover {
   color: #00ff84;
   text-decoration: none;
+}
+
+.mobileMenu {
+  padding: 0 20px;
+  background-color: white;
+  z-index: 1;
+}
+
+.mobileLink {
+  color: black;
+}
+
+/* .mobileListItem {
+  display: inline-block;
+} */
+
+@media (min-width: 768px) {
+  .mobileBtn {
+    display: none;
+  }
+
+  .menuUl {
+    display: flex;
+  }
 }

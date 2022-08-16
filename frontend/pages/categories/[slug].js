@@ -46,7 +46,7 @@ const Category = ({ category, blogs, query, categories, tags }) => {
             </div>
             <div className="row">
               <div className="col-12 col-lg-8">
-                {blogs.map((b, i) => (
+                {blogs?.map((b, i) => (
                   <>
                     <article key={i} className={`cardBorder`}>
                       <Card key={i} blog={b} />
