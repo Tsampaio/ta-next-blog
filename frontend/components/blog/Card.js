@@ -46,12 +46,12 @@ const Card = ({ blog }) => {
           </div>
         </section>
       </header>
-      <section className={`${styles.blogSection} mt-4 mb-0 mb-md-4`}>
+      <section className={`${styles.blogSection} mt-2 mb-0 mb-md-2`}>
         <div className={`${styles.blogDate} pl-4 pr-4 ${styles.separator}`}>
           <h3>{moment(blog.updatedAt).format('DD')}</h3>
           <p>{moment(blog.updatedAt).format('MMMM yy')}</p>
         </div>
-        <div className={`${styles.blogDetails} pl-4`}>
+        <div className={`${styles.blogDetails} px-4`}>
           <Link href={`/blogs/${blog.slug}`}>
             <a className={`${styles.blogTitle} mb-3`}>{blog.title}</a>
           </Link>
@@ -98,7 +98,7 @@ const Card = ({ blog }) => {
         </div> */}
 
       <section className="px-4">
-        <div className={`${styles.blogPreview} pb-3`}>{renderHTML(blog.excerpt)}</div>
+        <div className={`${styles.blogPreview}`}>{renderHTML(blog.excerpt)}</div>
         <Link href={`/blogs/${blog.slug}`}>
           <a className="btn btn-primary pt-2">Read more</a>
         </Link>

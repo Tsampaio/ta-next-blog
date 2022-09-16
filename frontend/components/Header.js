@@ -90,7 +90,7 @@ const Header = () => {
               {pageLoaded && !isAuth() && (
                 <li className={styles.listItem}>
                   <Link href="/blogs">
-                    <a className={styles.menuLink}>Profile</a>
+                    <a className={styles.menuLink}>LOGIN</a>
                   </Link>
                 </li>
               )}

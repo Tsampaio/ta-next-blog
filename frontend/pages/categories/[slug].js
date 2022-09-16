@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
+import Router from 'next/router';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { singleCategory } from '../../actions/category';
@@ -11,15 +13,21 @@ import Sidebar from '../../components/Sidebar';
 import styles from './Categories.module.css';
 
 const Category = ({ category, blogs, query, categories, tags }) => {
+  useEffect(() => {
+    if (!category) {
+      Router.push(`/`);
+    }
+  }, [category]);
+
   const head = () => (
     <Head>
       <title>
-        {category.name} | {APP_NAME}
+        {category?.name} | {APP_NAME}
       </title>
-      <meta name="description" content={`Best programming tutorials on ${category.name}`} />
+      <meta name="description" content={`Best programming tutorials on ${category?.name}`} />
       <link rel="canonical" href={`${DOMAIN}/categories/${query.slug}`} />
-      <meta property="og:title" content={`${category.name}| ${APP_NAME}`} />
-      <meta property="og:description" content={`Best programming tutorials on ${category.name}`} />
+      <meta property="og:title" content={`${category?.name}| ${APP_NAME}`} />
+      <meta property="og:description" content={`Best programming tutorials on ${category?.name}`} />
       <meta property="og:type" content="webiste" />
       <meta property="og:url" content={`${DOMAIN}/categories/${query.slug}`} />
       <meta property="og:site_name" content={`${APP_NAME}`} />
@@ -31,6 +39,12 @@ const Category = ({ category, blogs, query, categories, tags }) => {
     </Head>
   );
 
+  const categoryBlogsTitle = () => {
+    return blogs && blogs.length > 0
+      ? `Blogs with category: ${category.name.toUpperCase()}`
+      : 'No blogs with that category';
+  };
+
   return (
     <>
       {head()}
@@ -39,9 +53,7 @@ const Category = ({ category, blogs, query, categories, tags }) => {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h1 className="display-5 font-weight-bold mb-4">
-                  Blogs with category: {category.name.toUpperCase()}
-                </h1>
+                <h1 className="display-5 font-weight-bold mb-4">{categoryBlogsTitle()}</h1>
               </div>
             </div>
             <div className="row">

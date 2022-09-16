@@ -114,9 +114,9 @@ const SingleBlog = ({ blog, query }) => {
                   <div className={styles.blogNavigation} aria-label="breadcrumb">
                     <ul className="breadcrumb">
                       <li className="breadcrumb-item">
-                        <Link href={`${DOMAIN}`}>
-                          <a className="mr-1 ml-1 mt-3">Blogs</a>
-                        </Link>
+                        <a href={DOMAIN} className="mr-1 ml-1 mt-3">
+                          Blogs
+                        </a>
                       </li>
 
                       <li className={`${styles.navActive} breadcrumb-item active`}>{query.slug}</li>

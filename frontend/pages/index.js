@@ -70,12 +70,12 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
     return blogs?.map((blog, i) => {
       // ()
       return (
-        <>
-          <article key={i} className={`${styles.blogBackground} cardBorder`}>
+        <React.Fragment key={i}>
+          <article className={`${styles.blogBackground} cardBorder`}>
             <Card blog={blog} />
           </article>
           <hr />
-        </>
+        </React.Fragment>
       );
     });
   };
@@ -98,12 +98,12 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
 
   const showLoadedBlogs = () => {
     return loadedBlogs.map((blog, i) => (
-      <>
-        <article key={i} className={`${styles.blogBackground} cardBorder`}>
+      <React.Fragment key={i}>
+        <article className={`${styles.blogBackground} cardBorder`}>
           <Card blog={blog} />
         </article>
         <hr />
-      </>
+      </React.Fragment>
     ));
   };
 
