@@ -69,21 +69,14 @@ const Header = () => {
               {pageLoaded && (
                 <li className={styles.listItem}>
                   <Link href="https://app.telmo.academy/courses" passHref={true}>
-                    <a className={styles.menuLink}>MEMBERSHIP</a>
-                  </Link>
-                </li>
-              )}
-              {pageLoaded && isAuth()?.role !== 1 && (
-                <li className={styles.listItem}>
-                  <Link href="https://app.telmo.academy/courses" passHref={true}>
-                    <a className={styles.menuLink}>Old Website</a>
+                    <a className={styles.menuLink}>PRICING</a>
                   </Link>
                 </li>
               )}
               {pageLoaded && (
                 <li className={styles.listItem}>
-                  <Link href="/">
-                    <a className={styles.menuLink}>BLOG</a>
+                  <Link href="https://mentorcruise.com/mentor/telmosampaio/" passHref={true}>
+                    <a className={styles.menuLink}>MENTORSHIP</a>
                   </Link>
                 </li>
               )}
@@ -170,28 +163,23 @@ const Header = () => {
           {pageLoaded && (
             <li className={`${styles.mobileListItem} nav-item py-1 border-bottom border-dark`}>
               <Link href="https://app.telmo.academy/courses" passHref={true}>
-                <a className={`${styles.mobileLink} d-block`}>MEMBERSHIP</a>
+                <a className={`${styles.mobileLink} d-block`}>PRICING</a>
               </Link>
             </li>
           )}
-          {pageLoaded && isAuth()?.role !== 1 && (
-            <li className={`${styles.mobileListItem} nav-item py-1 border-bottom border-dark`}>
-              <Link href="https://app.telmo.academy/courses" passHref={true}>
-                <a className={`${styles.mobileLink} d-block`}>OLD WEBSITE</a>
-              </Link>
-            </li>
-          )}
+
           {pageLoaded && (
             <li className={`${styles.mobileListItem} nav-item py-1 border-bottom border-dark`}>
-              <Link href="/">
-                <a className={styles.mobileLink}>BLOG</a>
+              <Link href="https://mentorcruise.com/mentor/telmosampaio/" passHref={true}>
+                <a className={`${styles.mobileLink} d-block`}>MENTORSHIP</a>
               </Link>
             </li>
           )}
+
           {pageLoaded && !isAuth() && (
             <li className={`${styles.mobileListItem} nav-item py-1`}>
               <Link href="/blogs">
-                <a className={`${styles.mobileLink} d-block`}>PROFILE</a>
+                <a className={`${styles.mobileLink} d-block`}>LOGIN</a>
               </Link>
             </li>
           )}
