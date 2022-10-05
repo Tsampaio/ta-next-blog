@@ -48,8 +48,8 @@ const Card = ({ blog }) => {
       </header>
       <section className={`${styles.blogSection} mt-2 mb-0 mb-md-2`}>
         <div className={`${styles.blogDate} pl-4 pr-4 ${styles.separator}`}>
-          <h3>{moment(blog.updatedAt).format('DD')}</h3>
-          <p>{moment(blog.updatedAt).format('MMMM yy')}</p>
+          <h3>{moment(blog.createdAt).format('DD')}</h3>
+          <p>{moment(blog.createdAt).format('MMMM yy')}</p>
         </div>
         <div className={`${styles.blogDetails} px-4`}>
           <Link href={`/blogs/${blog.slug}`}>

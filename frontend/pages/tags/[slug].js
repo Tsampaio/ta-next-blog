@@ -93,7 +93,7 @@ Tag.getInitialProps = ({ query }) => {
         } else {
           return {
             tag: data.tag,
-            blogs: data.blogs,
+            blogs: data2.blogs,
             query,
             categories: data2.categories,
             tags: data2.tags,
