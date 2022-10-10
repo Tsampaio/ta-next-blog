@@ -25,11 +25,11 @@ const Category = ({ category, blogs, query, categories, tags }) => {
         {category?.name} | {APP_NAME}
       </title>
       <meta name="description" content={`Best programming tutorials on ${category?.name}`} />
-      <link rel="canonical" href={`${DOMAIN}/categories/${query.slug}`} />
+      <link rel="canonical" href={`${DOMAIN}/categories/${query}`} />
       <meta property="og:title" content={`${category?.name}| ${APP_NAME}`} />
       <meta property="og:description" content={`Best programming tutorials on ${category?.name}`} />
       <meta property="og:type" content="webiste" />
-      <meta property="og:url" content={`${DOMAIN}/categories/${query.slug}`} />
+      <meta property="og:url" content={`${DOMAIN}/categories/${query}`} />
       <meta property="og:site_name" content={`${APP_NAME}`} />
 
       <meta property="og:image" content={`${DOMAIN}/static/images/seoblog.jpg`} />
@@ -78,8 +78,10 @@ const Category = ({ category, blogs, query, categories, tags }) => {
   );
 };
 
-Category.getInitialProps = ({ query }) => {
-  return singleCategory(query.slug).then((data) => {
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+
+  return singleCategory(slug).then((data) => {
     if (data.error) {
       console.log(data.error);
     } else {
@@ -92,16 +94,40 @@ Category.getInitialProps = ({ query }) => {
           return '';
         } else {
           return {
-            category: data.category,
-            blogs: data2.blogs,
-            query,
-            categories: data2.categories,
-            tags: data2.tags,
+            props: {
+              category: data.category,
+              blogs: data2.blogs,
+              query: slug,
+              categories: data2.categories,
+              tags: data2.tags,
+            },
           };
         }
       });
     }
   });
-};
+}
+
+export async function getStaticPaths() {
+  let skip = 0;
+  let limit = 5;
+  return listBlogsWithCategoriesAndTags(skip, limit).then((data) => {
+    if (data?.error) {
+      console.log(data.error);
+    } else {
+      const slugs = data?.blogs.map((blog) => ({
+        params: { slug: blog.slug },
+      }));
+
+      console.log('my slugs');
+      console.log(slugs);
+
+      return {
+        paths: slugs,
+        fallback: 'blocking',
+      };
+    }
+  });
+}
 
 export default Category;

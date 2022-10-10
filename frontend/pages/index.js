@@ -131,23 +131,25 @@ const Index = ({ blogs, categories, tags, totalBlogs, blogsLimit, blogSkip, rout
   );
 };
 
-Index.getInitialProps = () => {
+export async function getStaticProps(context) {
   let skip = 0;
-  let limit = 3;
+  let limit = 5;
   return listBlogsWithCategoriesAndTags(skip, limit).then((data) => {
     if (data?.error) {
       console.log(data.error);
     } else {
       return {
-        blogs: data?.blogs,
-        categories: data?.categories,
-        tags: data?.tags,
-        totalBlogs: data?.size,
-        blogsLimit: limit,
-        blogSkip: skip,
+        props: {
+          blogs: data?.blogs,
+          categories: data?.categories,
+          tags: data?.tags,
+          totalBlogs: data?.size,
+          blogsLimit: limit,
+          blogSkip: skip,
+        },
       };
     }
   });
-};
+}
 
 export default withRouter(Index);

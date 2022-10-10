@@ -25,11 +25,11 @@ const Tag = ({ tag, blogs, query, categories, tags }) => {
         {tag?.name} | {APP_NAME}
       </title>
       <meta name="description" content={`Best programming tutorials on ${tag?.name}`} />
-      <link rel="canonical" href={`${DOMAIN}/categories/${query.slug}`} />
+      <link rel="canonical" href={`${DOMAIN}/categories/${query}`} />
       <meta property="og:title" content={`${tag?.name}| ${APP_NAME}`} />
       <meta property="og:description" content={`Best programming tutorials on ${tag?.name}`} />
       <meta property="og:type" content="webiste" />
-      <meta property="og:url" content={`${DOMAIN}/categories/${query.slug}`} />
+      <meta property="og:url" content={`${DOMAIN}/categories/${query}`} />
       <meta property="og:site_name" content={`${APP_NAME}`} />
 
       <meta property="og:image" content={`${DOMAIN}/static/images/seoblog.jpg`} />
@@ -78,8 +78,10 @@ const Tag = ({ tag, blogs, query, categories, tags }) => {
   );
 };
 
-Tag.getInitialProps = ({ query }) => {
-  return singleTag(query.slug).then((data) => {
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+
+  return singleTag(slug).then((data) => {
     if (data.error) {
       console.log(data.error);
     } else {
@@ -94,7 +96,7 @@ Tag.getInitialProps = ({ query }) => {
           return {
             tag: data.tag,
             blogs: data2.blogs,
-            query,
+            query: slug,
             categories: data2.categories,
             tags: data2.tags,
           };
@@ -102,6 +104,28 @@ Tag.getInitialProps = ({ query }) => {
       });
     }
   });
-};
+}
+
+export async function getStaticPaths() {
+  let skip = 0;
+  let limit = 5;
+  return listBlogsWithCategoriesAndTags(skip, limit).then((data) => {
+    if (data?.error) {
+      console.log(data.error);
+    } else {
+      const slugs = data?.blogs.map((blog) => ({
+        params: { slug: blog.slug },
+      }));
+
+      console.log('my slugs');
+      console.log(slugs);
+
+      return {
+        paths: slugs,
+        fallback: 'blocking',
+      };
+    }
+  });
+}
 
 export default Tag;

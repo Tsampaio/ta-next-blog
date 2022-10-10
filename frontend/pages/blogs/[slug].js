@@ -47,11 +47,11 @@ const SingleBlog = ({ blog, query, categories, tags }) => {
         {blog?.title} | {APP_NAME}
       </title>
       <meta name="description" content={blog?.mdesc} />
-      <link rel="canonical" href={`${DOMAIN}/blogs/${query.slug}`} />
+      <link rel="canonical" href={`${DOMAIN}/blogs/${query}`} />
       <meta property="og:title" content={`${blog?.title}| ${APP_NAME}`} />
       <meta property="og:description" content={blog?.mdesc} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={`${DOMAIN}/blogs/${query.slug}`} />
+      <meta property="og:url" content={`${DOMAIN}/blogs/${query}`} />
       <meta property="og:site_name" content={`${APP_NAME}`} />
 
       <meta property="og:image" content={`${API}/blog/photo/${blog?.slug}`} />
@@ -120,7 +120,7 @@ const SingleBlog = ({ blog, query, categories, tags }) => {
                         </a>
                       </li>
 
-                      <li className={`${styles.navActive} breadcrumb-item active`}>{query.slug}</li>
+                      <li className={`${styles.navActive} breadcrumb-item active`}>{query}</li>
                     </ul>
                   </div>
                   {/* <h1 className={`pb-3 pt-3 my-5 font-weight-bold ${styles.blogTitle}`}>
@@ -175,8 +175,42 @@ const SingleBlog = ({ blog, query, categories, tags }) => {
   );
 };
 
-SingleBlog.getInitialProps = ({ query }) => {
-  return singleBlog(query.slug).then((data) => {
+// SingleBlog.getInitialProps = ({ query }) => {
+//   return singleBlog(query.slug).then((data) => {
+//     if (data && data.error) {
+//       console.log(data.error);
+//     } else {
+//       // console.log('GET INITIAL PROPS IN SINGLE BLOG', data);
+//       // return { blog: data, query };
+
+//       let skip = 0;
+//       let limit = 3;
+
+//       return listBlogsWithCategoriesAndTags(skip, limit).then((data2) => {
+//         if (data2.error) {
+//           console.log(data2.error);
+//           return '';
+//         } else {
+//           return {
+//             blog: data,
+//             query,
+//             blogs: data2?.blogs,
+//             categories: data2?.categories,
+//             tags: data2?.tags,
+//             totalBlogs: data2?.size,
+//             blogsLimit: limit,
+//             blogSkip: skip,
+//           };
+//         }
+//       });
+//     }
+//   });
+// };
+
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+
+  return singleBlog(slug).then((data) => {
     if (data && data.error) {
       console.log(data.error);
     } else {
@@ -192,19 +226,44 @@ SingleBlog.getInitialProps = ({ query }) => {
           return '';
         } else {
           return {
-            blog: data,
-            query,
-            blogs: data2?.blogs,
-            categories: data2?.categories,
-            tags: data2?.tags,
-            totalBlogs: data2?.size,
-            blogsLimit: limit,
-            blogSkip: skip,
+            props: {
+              query: slug,
+              blog: data,
+              // query,
+              blogs: data2?.blogs,
+              categories: data2?.categories,
+              tags: data2?.tags,
+              totalBlogs: data2?.size,
+              blogsLimit: limit,
+              blogSkip: skip,
+            },
           };
         }
       });
     }
   });
-};
+}
+
+export async function getStaticPaths() {
+  let skip = 0;
+  let limit = 5;
+  return listBlogsWithCategoriesAndTags(skip, limit).then((data) => {
+    if (data?.error) {
+      console.log(data.error);
+    } else {
+      const slugs = data?.blogs.map((blog) => ({
+        params: { slug: blog.slug },
+      }));
+
+      console.log('my slugs');
+      console.log(slugs);
+
+      return {
+        paths: slugs,
+        fallback: 'blocking',
+      };
+    }
+  });
+}
 
 export default SingleBlog;
