@@ -20,6 +20,8 @@ import {
   Row,
 } from 'reactstrap';
 
+import { MAIN_WEBSITE } from '../config';
+
 import styles from '../static/css/Header.module.css';
 
 import Search from './blog/Search';
@@ -47,7 +49,7 @@ const Header = () => {
       <Navbar container={true} className={styles.navbar}>
         <Row style={{ flex: 1 }}>
           <div className={`col-sm-12 ${styles.divCol}`}>
-            <Link href="/">
+            <Link href={MAIN_WEBSITE}>
               {/* <NavLink className="font-weight-bold">{APP_NAME}</NavLink> */}
               <a className={styles.logoLink}>
                 <img

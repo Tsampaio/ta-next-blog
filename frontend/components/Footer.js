@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Container, Row } from 'reactstrap';
-import { PRIVACY_PAGE, TERMS_PAGE, CONTACT_PAGE, OLD_WEBSITE } from '../config';
+import { MAIN_WEBSITE } from '../config';
 
 import styles from './Footer.module.css';
 
@@ -54,19 +54,19 @@ const Footer = () => {
               </div>
               <div className={styles.footerLinks}>
                 <div>
-                  <Link href={PRIVACY_PAGE}>
+                  <Link href={`${MAIN_WEBSITE}/privacy`}>
                     <a>Privacy</a>
                   </Link>
 
-                  <Link href={TERMS_PAGE}>
+                  <Link href={`${MAIN_WEBSITE}/terms`}>
                     <a>Terms</a>
                   </Link>
                 </div>
                 <div>
-                  <Link href={OLD_WEBSITE}>
+                  <Link href={`${MAIN_WEBSITE}/migration`}>
                     <a>Old Website</a>
                   </Link>
-                  <Link href={CONTACT_PAGE}>
+                  <Link href={`${MAIN_WEBSITE}/contact`}>
                     <a>Contact</a>
                   </Link>
                 </div>
